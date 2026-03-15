@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chandni Bangle Store – Beauty & Fashion, Ekangarsarai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================================================
+       VARIABLES & RESET
+    ===================================================== */
+    :root {
+      --rose:       #e8547a;
+      --rose-deep:  #c93b63;
+      --rose-light: #f7a8be;
+      --rose-pale:  #fde8ef;
+      --gold:       #c9952e;
+      --gold-light: #e8b84b;
+      --gold-pale:  #fdf3df;
+      --cream:      #fffaf5;
+      --warm-white: #fff5f8;
+      --text-dark:  #2a1520;
+      --text-mid:   #6b3a4a;
+      --text-light: #b07a8c;
+      --border:     rgba(232,84,122,0.15);
+      --shadow-rose: 0 8px 32px rgba(232,84,122,0.18);
+      --shadow-gold: 0 8px 24px rgba(201,149,46,0.2);
+      --font-display: 'Playfair Display', serif;
+      --font-body:    'DM Sans', sans-serif;
+      --tr: 0.32s cubic-bezier(0.4,0,0.2,1);
+      --radius: 2px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--cream);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+    img { display: block; width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--rose-pale); }
+    ::-webkit-scrollbar-thumb { background: var(--rose-light); border-radius: 3px; }
+
+    /* =====================================================
+       UTILITY
+    ===================================================== */
+    .section-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .section-label::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1.3rem; height: 1.5px;
+      background: var(--rose-light);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text-dark);
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .gold-divider {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+    .gold-divider span { display: block; }
+    .gold-divider .line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-light), transparent); max-width: 80px; }
+    .gold-divider .diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+    .gold-divider.center { justify-content: center; }
+    .gold-divider.center .line { background: linear-gradient(90deg, transparent, var(--gold-light), transparent); max-width: 60px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.82rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: var(--tr);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.15);
+      transform: translateX(-101%);
+      transition: transform 0.35s ease;
+    }
+    .btn:hover::before { transform: translateX(0); }
+    .btn-rose {
+      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+      color: #fff;
+      box-shadow: var(--shadow-rose);
+    }
+    .btn-rose:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,84,122,0.32); }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #fff;
+      box-shadow: var(--shadow-gold);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(201,149,46,0.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--rose);
+      border: 1.5px solid var(--rose-light);
+    }
+    .btn-outline:hover { background: var(--rose-pale); border-color: var(--rose); }
+    section { padding: 5.5rem 1.5rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* Decorative petals */
+    .petal-bg {
+      position: absolute; pointer-events: none; opacity: 0.07;
+      font-size: 6rem; line-height: 1; user-select: none;
+    }
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+    }
+    #navbar.scrolled {
+      background: rgba(255,250,245,0.96);
+      backdrop-filter: blur(14px);
+      padding: 0.65rem 2rem;
+      box-shadow: 0 2px 20px rgba(232,84,122,0.1);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--rose-deep);
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { font-style: italic; color: var(--gold); font-weight: 400; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      transition: color var(--tr);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--rose);
+      transition: width var(--tr);
+    }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: 0.5rem 1.3rem !important;
+      font-size: 0.72rem !important;
+    }
+    .hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--rose); border-radius: 2px;
+      transition: var(--tr);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: rgba(255,240,245,0.98);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 400;
+      color: var(--text-mid);
+      transition: color var(--tr);
+    }
+    .mobile-menu a:hover { color: var(--rose); }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+    #home {
+      min-height: 100vh;
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff0f5 0%, #fff5e8 40%, #ffe8f0 100%);
+      padding: 0;
+    }
+    .hero-decor {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,84,122,0.12) 0%, transparent 70%);
+    }
+    .hero-circle.c1 { width: 700px; height: 700px; top: -200px; right: -100px; }
+    .hero-circle.c2 { width: 400px; height: 400px; bottom: -100px; left: -80px; background: radial-gradient(circle, rgba(201,149,46,0.1) 0%, transparent 70%); }
+    .hero-dots {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(rgba(232,84,122,0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 4rem;
+      max-width: 1200px; margin: 0 auto;
+      padding: 7rem 2rem 4rem;
+      width: 100%;
+    }
+    .hero-text {}
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(232,84,122,0.2);
+      padding: 0.4rem 1rem;
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--rose);
+      font-weight: 600; margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+      animation: fadeDown 0.7s 0.2s both;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700; line-height: 1.05;
+      color: var(--text-dark);
+      animation: fadeUp 0.8s 0.4s both;
+    }
+    .hero-title em { font-style: italic; color: var(--rose); display: block; }
+    .hero-title .gold-word { color: var(--gold); }
+    .hero-tagline {
+      font-size: 1.05rem; color: var(--text-mid);
+      margin: 1.3rem 0 2rem;
+      line-height: 1.65;
+      animation: fadeUp 0.8s 0.55s both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.7s both;
+    }
+    .hero-rating {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.8s 0.85s both;
+    }
+    .hero-rating .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+    .hero-rating .score { font-family: var(--font-display); font-size: 1.8rem; color: var(--gold); line-height: 1; font-weight: 700; }
+    .hero-rating .count { font-size: 0.75rem; color: var(--text-light); }
+    .hero-visual {
+      position: relative;
+      animation: fadeRight 1s 0.5s both;
+    }
+    .hero-img-stack {
+      position: relative; width: 100%; padding-bottom: 110%;
+    }
+    .hero-img-main {
+      position: absolute; top: 0; left: 5%;
+      width: 75%; padding-bottom: 90%;
+      background: url('https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&q=80') center/cover;
+      border-radius: 60% 40% 55% 45% / 50% 45% 55% 50%;
+      box-shadow: var(--shadow-rose);
+      animation: morphShape 8s ease-in-out infinite;
+    }
+    @keyframes morphShape {
+      0%,100% { border-radius: 60% 40% 55% 45% / 50% 45% 55% 50%; }
+      33% { border-radius: 40% 60% 45% 55% / 55% 50% 45% 50%; }
+      66% { border-radius: 55% 45% 60% 40% / 45% 55% 50% 50%; }
+    }
+    .hero-img-float {
+      position: absolute;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      overflow: hidden;
+      background: center/cover;
+    }
+    .hero-img-float.f1 {
+      bottom: 8%; right: 0;
+      width: 38%; padding-bottom: 42%;
+      background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300&q=80');
+      animation: floatUp 4s ease-in-out infinite;
+    }
+    .hero-img-float.f2 {
+      top: 5%; right: 8%;
+      width: 28%; padding-bottom: 30%;
+      background-image: url('https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=300&q=80');
+      animation: floatUp 5s 1s ease-in-out infinite;
+    }
+    @keyframes floatUp {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .hero-tag-pill {
+      position: absolute;
+      background: #fff;
+      border: 1.5px solid var(--rose-light);
+      padding: 0.5rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--rose-deep);
+      box-shadow: 0 4px 16px rgba(232,84,122,0.15);
+      white-space: nowrap;
+    }
+    .hero-tag-pill.p1 { bottom: 22%; left: -10px; }
+    .hero-tag-pill.p2 { top: 15%; left: 0; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+
+    /* =====================================================
+       INTRO BAND
+    ===================================================== */
+    .intro-band {
+      background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+      padding: 2.5rem 1.5rem;
+    }
+    .intro-band .container {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    }
+    .ib-item {
+      text-align: center; padding: 1.2rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .ib-item:last-child { border-right: none; }
+    .ib-item .num {
+      font-family: var(--font-display);
+      font-size: 2rem; color: var(--gold-light); line-height: 1;
+    }
+    .ib-item p { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: 0.3rem; }
+
+    /* =====================================================
+       ABOUT
+    ===================================================== */
+    #about { background: var(--warm-white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .about-text .section-title { margin-bottom: 1rem; }
+    .about-text p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 1.1rem; }
+    .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+    .pillar {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      padding: 1.2rem;
+      border-radius: 12px;
+      transition: border-color var(--tr), box-shadow var(--tr), transform var(--tr);
+    }
+    .pillar:hover { border-color: var(--rose-light); box-shadow: var(--shadow-rose); transform: translateY(-3px); }
+    .pillar .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .pillar h4 { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose-deep); margin-bottom: 0.3rem; font-weight: 600; }
+    .pillar p { font-size: 0.76rem; color: var(--text-light); margin: 0; line-height: 1.5; }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%; height: 500px;
+      background: url('https://images.unsplash.com/photo-1526045431048-f857369baa09?w=700&q=80') center/cover;
+      border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%;
+      box-shadow: var(--shadow-rose);
+    }
+    .about-float-card {
+      position: absolute; bottom: -1.5rem; left: -2rem;
+      background: #fff; border-radius: 12px;
+      padding: 1rem 1.4rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--gold);
+      min-width: 160px;
+    }
+    .about-float-card .num { font-family: var(--font-display); font-size: 1.8rem; color: var(--gold); line-height: 1; }
+    .about-float-card p { font-size: 0.72rem; color: var(--text-light); margin-top: 0.2rem; }
+
+    /* =====================================================
+       FEATURED PRODUCTS
+    ===================================================== */
+    #featured { background: var(--cream); }
+    .featured-header { text-align: center; margin-bottom: 3.5rem; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-rose); border-color: var(--rose-light); }
+    .product-card:first-child { grid-column: span 2; }
+    .product-img {
+      width: 100%; height: 200px;
+      background: center/cover; position: relative;
+    }
+    .product-card:first-child .product-img { height: 280px; }
+    .product-badge {
+      position: absolute; top: 1rem; left: 1rem;
+      background: var(--rose);
+      color: #fff; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem; border-radius: 50px;
+    }
+    .product-info { padding: 1.2rem; }
+    .product-cat { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose-light); font-weight: 600; }
+    .product-name { font-family: var(--font-display); font-size: 1.1rem; color: var(--text-dark); margin: 0.2rem 0 0.4rem; line-height: 1.2; }
+    .product-price { font-size: 1rem; color: var(--rose-deep); font-weight: 700; }
+    .product-price .old { text-decoration: line-through; color: var(--text-light); font-size: 0.78rem; margin-left: 0.4rem; font-weight: 400; }
+
+    /* =====================================================
+       MENU / PRODUCTS PAGE
+    ===================================================== */
+    #menu { background: var(--warm-white); }
+    .menu-header { text-align: center; margin-bottom: 2.5rem; }
+    .gender-tabs {
+      display: flex; justify-content: center; gap: 0; margin-bottom: 2.5rem;
+      border: 2px solid var(--rose-light); border-radius: 50px;
+      overflow: hidden; width: fit-content; margin-left: auto; margin-right: auto;
+    }
+    .gender-tab {
+      padding: 0.65rem 2.5rem;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; background: transparent;
+      color: var(--text-mid); border: none;
+      transition: var(--tr); font-family: var(--font-body);
+    }
+    .gender-tab.active {
+      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+      color: #fff;
+    }
+    .cat-tabs {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      justify-content: center; margin-bottom: 2.5rem;
+    }
+    .cat-tab {
+      padding: 0.45rem 1.2rem;
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; background: #fff;
+      color: var(--text-mid);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      transition: var(--tr); font-family: var(--font-body);
+    }
+    .cat-tab:hover, .cat-tab.active {
+      background: var(--rose-pale); color: var(--rose-deep);
+      border-color: var(--rose-light);
+    }
+    .menu-section { display: none; }
+    .menu-section.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .menu-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
+    }
+    .menu-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-rose); border-color: var(--rose-light); }
+    .menu-card-img {
+      width: 100%; height: 175px;
+      background: center/cover no-repeat;
+    }
+    .menu-card-body { padding: 1rem 1.1rem 1.2rem; }
+    .menu-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
+    .menu-card-name { font-family: var(--font-display); font-size: 1rem; color: var(--text-dark); line-height: 1.2; }
+    .menu-card-price { color: var(--rose-deep); font-weight: 700; font-size: 0.92rem; white-space: nowrap; }
+    .menu-card-desc { font-size: 0.75rem; color: var(--text-light); margin-top: 0.35rem; line-height: 1.55; }
+    .menu-card-tag {
+      display: inline-block; margin-top: 0.6rem;
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      border-radius: 50px;
+      background: var(--rose-pale); color: var(--rose-deep);
+    }
+
+    /* =====================================================
+       ORDER PAGE
+    ===================================================== */
+    #order {
+      background: linear-gradient(135deg, var(--rose-pale) 0%, var(--gold-pale) 100%);
+      position: relative; overflow: hidden;
+    }
+    #order::before {
+      content: '🌸'; font-size: 12rem;
+      position: absolute; top: -2rem; right: -2rem;
+      opacity: 0.06; pointer-events: none;
+    }
+    .order-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 4.5rem; align-items: start;
+    }
+    .order-info .section-title { margin-bottom: 1rem; }
+    .order-info p { font-size: 0.86rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 2rem; }
+    .order-detail { display: flex; gap: 1rem; margin-bottom: 1.3rem; align-items: flex-start; }
+    .od-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--rose-pale); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; border: 1px solid var(--border);
+    }
+    .od-text strong { display: block; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.2rem; }
+    .od-text p { font-size: 0.82rem; color: var(--text-mid); margin: 0; }
+    .order-form-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 12px 48px rgba(232,84,122,0.1);
+      border: 1.5px solid var(--border);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block; font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--rose); margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--rose-pale);
+      border: 1.5px solid rgba(232,84,122,0.15);
+      color: var(--text-dark);
+      padding: 0.82rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      border-radius: 10px;
+      transition: border-color var(--tr), background var(--tr), box-shadow var(--tr);
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--rose);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(232,84,122,0.08);
+    }
+    .form-group select option { background: #fff; }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group .err { font-size: 0.68rem; color: #d63a3a; margin-top: 0.3rem; display: none; }
+    .form-group.invalid input,
+    .form-group.invalid select,
+    .form-group.invalid textarea { border-color: #d63a3a; }
+    .form-group.invalid .err { display: block; }
+    .order-cart {
+      background: var(--rose-pale);
+      border-radius: 12px; padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      border: 1px dashed var(--rose-light);
+    }
+    .order-cart h4 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.8rem; }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid rgba(232,84,122,0.1); font-size: 0.82rem; }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-total { display: flex; justify-content: space-between; font-weight: 700; color: var(--rose-deep); margin-top: 0.5rem; font-size: 0.9rem; }
+    .submit-btn { width: 100%; padding: 1rem; font-size: 0.82rem; border-radius: 10px; }
+    .success-wrap {
+      display: none; text-align: center; padding: 2rem 1rem;
+    }
+    .success-icon { font-size: 3.5rem; margin-bottom: 1rem; animation: popIn 0.5s ease; }
+    @keyframes popIn { 0% { transform:scale(0); } 80% { transform:scale(1.15); } 100% { transform:scale(1); } }
+    .success-wrap h3 { font-family: var(--font-display); font-size: 1.8rem; color: var(--rose-deep); margin-bottom: 0.5rem; }
+    .success-wrap p { font-size: 0.85rem; color: var(--text-mid); }
+
+    /* =====================================================
+       GALLERY
+    ===================================================== */
+    #gallery { background: var(--cream); }
+    .gallery-header { text-align: center; margin-bottom: 3rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 180px);
+      gap: 6px;
+    }
+    .g-item {
+      overflow: hidden; cursor: pointer; position: relative; border-radius: 8px;
+    }
+    .g-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .g-item:nth-child(5) { grid-column: span 2; }
+    .g-bg {
+      width: 100%; height: 100%;
+      background: center/cover no-repeat;
+      transition: transform 0.5s ease;
+    }
+    .g-item:hover .g-bg { transform: scale(1.08); }
+    .g-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(201,60,100,0.5), transparent);
+      opacity: 0; transition: opacity var(--tr);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; border-radius: 8px;
+    }
+    .g-item:hover .g-overlay { opacity: 1; }
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(42,21,32,0.95); z-index: 2000;
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 88vw; max-height: 84vh;
+      object-fit: contain; border-radius: 8px;
+      box-shadow: 0 0 60px rgba(232,84,122,0.3);
+    }
+    .lb-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-size: 2.5rem; color: var(--rose-light); cursor: pointer; line-height: 1;
+      transition: color var(--tr);
+    }
+    .lb-close:hover { color: #fff; }
+    .lb-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(232,84,122,0.2); border: 1.5px solid rgba(232,84,122,0.4);
+      color: var(--rose-light); width: 50px; height: 50px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; cursor: pointer; border-radius: 50%;
+      transition: background var(--tr);
+    }
+    .lb-btn:hover { background: rgba(232,84,122,0.4); }
+    .lb-prev { left: 1.5rem; }
+    .lb-next { right: 1.5rem; }
+
+    /* =====================================================
+       REVIEWS
+    ===================================================== */
+    #reviews { background: var(--warm-white); }
+    .reviews-header { text-align: center; margin-bottom: 3rem; }
+    .reviews-top { display: flex; align-items: center; justify-content: center; gap: 4rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .rating-hero { text-align: center; }
+    .rating-hero .big { font-family: var(--font-display); font-size: 5rem; color: var(--rose); line-height: 1; font-weight: 700; }
+    .rating-hero .stars { color: var(--gold); font-size: 1.3rem; letter-spacing: 4px; }
+    .rating-hero .lbl { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); margin-top: 0.3rem; }
+    .rating-bars { display: flex; flex-direction: column; gap: 0.5rem; min-width: 180px; }
+    .rb-row { display: flex; align-items: center; gap: 0.7rem; font-size: 0.75rem; }
+    .rb-row .n { width: 14px; color: var(--text-light); text-align: right; }
+    .rb-row .bar { flex: 1; height: 5px; background: var(--rose-pale); border-radius: 10px; }
+    .rb-row .fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--rose-light), var(--rose)); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .review-card {
+      background: #fff; border-radius: 14px;
+      border: 1.5px solid var(--border);
+      padding: 1.6rem;
+      transition: border-color var(--tr), box-shadow var(--tr), transform var(--tr);
+    }
+    .review-card:hover { border-color: var(--rose-light); box-shadow: var(--shadow-rose); transform: translateY(-4px); }
+    .review-stars { color: var(--gold); font-size: 0.88rem; letter-spacing: 3px; margin-bottom: 0.9rem; }
+    .review-text { font-family: var(--font-display); font-style: italic; font-size: 1.02rem; color: var(--text-mid); line-height: 1.65; margin-bottom: 1.2rem; }
+    .reviewer { display: flex; align-items: center; gap: 0.8rem; }
+    .reviewer-ava {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--rose-light), var(--rose));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.1rem; color: #fff; font-weight: 600;
+    }
+    .reviewer-name { font-size: 0.82rem; font-weight: 600; color: var(--text-dark); }
+    .reviewer-date { font-size: 0.7rem; color: var(--text-light); }
+
+    /* =====================================================
+       CONTACT
+    ===================================================== */
+    #contact { background: var(--cream); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start; }
+    .contact-info .section-title { margin-bottom: 2rem; }
+    .contact-block { display: flex; gap: 1rem; margin-bottom: 1.8rem; }
+    .c-icon {
+      width: 46px; height: 46px; flex-shrink: 0; border-radius: 12px;
+      background: var(--rose-pale);
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--rose);
+    }
+    .c-text h4 { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); font-weight: 600; margin-bottom: 0.25rem; }
+    .c-text p { font-size: 0.83rem; color: var(--text-mid); line-height: 1.6; }
+    .hours-tbl { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    .hours-tbl td { padding: 0.5rem 0; font-size: 0.8rem; border-bottom: 1px solid var(--border); }
+    .hours-tbl td:first-child { color: var(--text-mid); }
+    .hours-tbl td:last-child { text-align: right; color: var(--rose-deep); font-weight: 600; }
+    .map-box {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: var(--shadow-rose);
+      border: 2px solid var(--rose-light);
+    }
+    .map-placeholder {
+      background: linear-gradient(135deg, var(--rose-pale), var(--gold-pale));
+      height: 380px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1rem; padding: 2rem; text-align: center;
+    }
+    .map-placeholder .map-icon { font-size: 4rem; }
+    .map-placeholder h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--rose-deep); }
+    .map-placeholder p { font-size: 0.82rem; color: var(--text-mid); max-width: 280px; line-height: 1.6; }
+    .map-placeholder a {
+      display: inline-block;
+      background: var(--rose); color: #fff;
+      padding: 0.6rem 1.4rem; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: background var(--tr);
+    }
+    .map-placeholder a:hover { background: var(--rose-deep); }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      background: var(--text-dark);
+      padding: 4.5rem 1.5rem 2.5rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-brand .logo { font-family: var(--font-display); font-size: 1.6rem; color: var(--rose-light); margin-bottom: 0.8rem; }
+    .footer-brand .logo span { font-style: italic; color: var(--gold-light); font-weight: 400; }
+    .footer-brand p { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 1.2rem; }
+    .socials { display: flex; gap: 0.7rem; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: rgba(255,255,255,0.5);
+      transition: var(--tr); cursor: pointer;
+    }
+    .social-btn:hover { background: var(--rose); border-color: var(--rose); color: #fff; }
+    .footer-col h5 { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--rose-light); margin-bottom: 1.2rem; font-weight: 600; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul a { font-size: 0.8rem; color: rgba(255,255,255,0.5); transition: color var(--tr); }
+    .footer-col ul a:hover { color: var(--rose-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.73rem; color: rgba(255,255,255,0.35); }
+    .footer-bottom .heart { color: var(--rose-light); }
+
+    /* =====================================================
+       SCROLL TOP
+    ===================================================== */
+    #scrollTop {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+      color: #fff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; z-index: 500;
+      box-shadow: var(--shadow-rose);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    #scrollTop.show { opacity: 1; transform: translateY(0); }
+    #scrollTop:hover { background: linear-gradient(135deg, var(--rose-deep), var(--rose)); }
+
+    /* =====================================================
+       REVEAL ANIMATIONS
+    ===================================================== */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-l { opacity: 0; transform: translateX(-36px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal-l.in { opacity: 1; transform: translateX(0); }
+    .reveal-r { opacity: 0; transform: translateX(36px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal-r.in { opacity: 1; transform: translateX(0); }
+
+    /* =====================================================
+       WHOLESALE SECTION
+    ===================================================== */
+    #wholesale { background: linear-gradient(135deg, #1a0a10 0%, #2a1020 50%, #1a0a10 100%); position: relative; overflow: hidden; }
+    #wholesale::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(201,149,46,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 50%, rgba(232,84,122,0.1) 0%, transparent 60%);
+    }
+    .ws-header { text-align: center; margin-bottom: 3.5rem; position: relative; }
+    .ws-header .section-label { color: var(--gold-light); }
+    .ws-header .section-label::before { background: var(--gold-light); }
+    .ws-header .section-title { color: #fff; }
+    .ws-header .section-title em { color: var(--gold-light); }
+    .ws-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      border: 1px solid rgba(201,149,46,0.2); position: relative;
+    }
+    .ws-compare::before {
+      content: 'VS';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--gold);
+      color: #fff;
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em;
+      z-index: 10;
+      box-shadow: 0 0 0 6px rgba(26,10,16,1);
+    }
+    .ws-col {
+      padding: 2.5rem;
+      position: relative;
+    }
+    .ws-col.retail { background: rgba(232,84,122,0.06); border-right: 1px solid rgba(201,149,46,0.15); }
+    .ws-col.wholesale { background: rgba(201,149,46,0.06); }
+    .ws-col-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem; }
+    .ws-col-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .ws-col.retail .ws-col-icon { background: rgba(232,84,122,0.2); border: 1px solid rgba(232,84,122,0.3); }
+    .ws-col.wholesale .ws-col-icon { background: rgba(201,149,46,0.2); border: 1px solid rgba(201,149,46,0.3); }
+    .ws-col-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
+    .ws-col.retail .ws-col-title { color: var(--rose-light); }
+    .ws-col.wholesale .ws-col-title { color: var(--gold-light); }
+    .ws-col-sub { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.1rem; }
+    .ws-col.retail .ws-col-sub { color: rgba(247,168,190,0.6); }
+    .ws-col.wholesale .ws-col-sub { color: rgba(232,184,75,0.6); }
+    .ws-features { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
+    .ws-feat {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      padding: 0.8rem 1rem; border-radius: 10px;
+    }
+    .ws-col.retail .ws-feat { background: rgba(232,84,122,0.07); border: 1px solid rgba(232,84,122,0.12); }
+    .ws-col.wholesale .ws-feat { background: rgba(201,149,46,0.07); border: 1px solid rgba(201,149,46,0.12); }
+    .ws-feat .tick { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .ws-feat-text strong { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.1rem; }
+    .ws-col.retail .ws-feat-text strong { color: var(--rose-light); }
+    .ws-col.wholesale .ws-feat-text strong { color: var(--gold-light); }
+    .ws-feat-text p { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 0; line-height: 1.4; }
+    .ws-price-table { width: 100%; border-collapse: collapse; margin-bottom: 1.8rem; }
+    .ws-price-table th {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: left; font-weight: 600;
+    }
+    .ws-col.retail .ws-price-table th { color: var(--rose-light); }
+    .ws-col.wholesale .ws-price-table th { color: var(--gold-light); }
+    .ws-price-table td { padding: 0.55rem 0.8rem; font-size: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.7); }
+    .ws-price-table td:last-child { text-align: right; font-weight: 600; }
+    .ws-col.retail .ws-price-table td:last-child { color: var(--rose-light); }
+    .ws-col.wholesale .ws-price-table td:last-child { color: var(--gold-light); }
+    .ws-cta { width: 100%; padding: 0.9rem; border-radius: 10px; font-size: 0.78rem; }
+    .ws-col.retail .ws-cta { background: linear-gradient(135deg, var(--rose), var(--rose-deep)); color: #fff; border: none; }
+    .ws-col.wholesale .ws-cta { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #fff; border: none; }
+    .ws-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); cursor: pointer; transition: var(--tr); }
+
+    /* Wholesale benefits strip */
+    .ws-benefits {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      margin-top: 3rem; position: relative;
+    }
+    .ws-benefit {
+      text-align: center; padding: 1.5rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,149,46,0.15);
+      border-radius: 12px;
+      transition: border-color var(--tr), background var(--tr);
+    }
+    .ws-benefit:hover { border-color: rgba(201,149,46,0.4); background: rgba(201,149,46,0.06); }
+    .ws-benefit .b-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+    .ws-benefit h4 { font-size: 0.8rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.3rem; letter-spacing: 0.05em; }
+    .ws-benefit p { font-size: 0.73rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+    /* Wholesale enquiry CTA band */
+    .ws-enquiry-band {
+      margin-top: 3rem; padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(201,149,46,0.15), rgba(232,84,122,0.1));
+      border: 1px solid rgba(201,149,46,0.25);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+      position: relative;
+    }
+    .ws-enquiry-band::before {
+      content: '💛';
+      position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+      font-size: 5rem; opacity: 0.07; pointer-events: none;
+    }
+    .ws-enquiry-text h3 { font-family: var(--font-display); font-size: 1.5rem; color: #fff; margin-bottom: 0.3rem; }
+    .ws-enquiry-text h3 em { color: var(--gold-light); font-style: italic; }
+    .ws-enquiry-text p { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .ws-enquiry-actions { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+    .ws-enquiry-actions a { white-space: nowrap; }
+
+    /* Order form type-switcher */
+    .order-type-switcher {
+      display: flex; gap: 0; margin-bottom: 1.8rem;
+      border: 2px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    .ots-btn {
+      flex: 1; padding: 0.85rem 1rem; text-align: center;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      background: var(--rose-pale); color: var(--text-mid);
+      border: none; font-family: var(--font-body);
+      transition: var(--tr); display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+    .ots-btn.active.retail-btn { background: linear-gradient(135deg, var(--rose), var(--rose-deep)); color: #fff; }
+    .ots-btn.active.wholesale-btn { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #fff; }
+    .ots-btn:not(.active):hover { background: #fff; }
+
+    /* Wholesale-only fields */
+    .ws-only { display: none; }
+    .ws-only.show { display: block; }
+    .ws-badge-inline {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #fff; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .ws-note {
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,149,46,0.25);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      font-size: 0.78rem; color: var(--text-mid);
+      margin-bottom: 1.2rem;
+      display: flex; gap: 0.5rem; align-items: flex-start;
+    }
+    .ws-note span { flex-shrink: 0; }
+
+    /* Hero wholesale badge */
+    .hero-ws-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(201,149,46,0.9), rgba(232,184,75,0.9));
+      color: #fff;
+      padding: 0.35rem 1rem;
+      font-size: 0.68rem; letter-spacing: 0.15em;
+      text-transform: uppercase; font-weight: 700;
+      border-radius: 50px;
+      box-shadow: 0 4px 16px rgba(201,149,46,0.3);
+      margin-bottom: 1rem;
+      animation: fadeDown 0.7s 0.1s both;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media(max-width:1024px){
+      .hero-inner { grid-template-columns:1fr; text-align:center; padding:7rem 2rem 3rem; }
+      .hero-btns { justify-content:center; }
+      .hero-rating { justify-content:center; }
+      .hero-visual { max-width:460px; margin:0 auto; }
+      .about-grid { grid-template-columns:1fr; gap:3rem; }
+      .about-visual { max-width:460px; margin:0 auto; }
+      .products-grid { grid-template-columns:repeat(2,1fr); }
+      .product-card:first-child { grid-column:span 2; }
+      .reviews-grid { grid-template-columns:1fr 1fr; }
+      .contact-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+      .footer-brand { grid-column:span 2; }
+      .ws-compare { grid-template-columns:1fr; }
+      .ws-compare::before { display:none; }
+      .ws-col.retail { border-right:none; border-bottom:1px solid rgba(201,149,46,0.15); }
+      .ws-benefits { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:768px){
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .intro-band .container { grid-template-columns:1fr 1fr; }
+      .ib-item:nth-child(2) { border-right:none; }
+      .hero-img-stack { padding-bottom:90%; }
+      .about-pillars { grid-template-columns:1fr; }
+      .products-grid { grid-template-columns:1fr; }
+      .product-card:first-child { grid-column:span 1; }
+      .reviews-grid { grid-template-columns:1fr; }
+      .gallery-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
+      .g-item:nth-child(1), .g-item:nth-child(5) { grid-column:span 2; }
+      .order-grid { grid-template-columns:1fr; gap:2.5rem; }
+      .form-row { grid-template-columns:1fr; }
+      section { padding:4rem 1.2rem; }
+      .ws-benefits { grid-template-columns:1fr 1fr; }
+      .ws-enquiry-band { flex-direction:column; text-align:center; }
+      .ws-enquiry-actions { justify-content:center; }
+      .ws-col { padding:1.8rem; }
+    }
+    @media(max-width:480px){
+      .intro-band .container { grid-template-columns:1fr; }
+      .ib-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.1); }
+      .gallery-grid { grid-template-columns:1fr; }
+      .g-item:nth-child(1), .g-item:nth-child(5) { grid-column:span 1; }
+      .footer-grid { grid-template-columns:1fr; }
+      .footer-brand { grid-column:span 1; }
+      .footer-bottom { flex-direction:column; text-align:center; }
+      .gender-tabs { flex-direction:column; border-radius:12px; }
+      .ws-benefits { grid-template-columns:1fr; }
+      .order-type-switcher { flex-direction:column; border-radius:12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================================================
+     NAVBAR
+=================================================== -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">Chandni <span>Bangle Store</span></a>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#menu">Products</a>
+    <a href="#wholesale">Wholesale</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="#order" class="btn btn-rose nav-cta">Order Now</a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home"      onclick="closeMob()">Home</a>
+  <a href="#about"     onclick="closeMob()">About</a>
+  <a href="#menu"      onclick="closeMob()">Products</a>
+  <a href="#wholesale" onclick="closeMob()">Wholesale</a>
+  <a href="#gallery"   onclick="closeMob()">Gallery</a>
+  <a href="#reviews"   onclick="closeMob()">Reviews</a>
+  <a href="#contact"   onclick="closeMob()">Contact</a>
+  <a href="#order"     onclick="closeMob()">Order Now</a>
+</div>
+
+<!-- ===================================================
+     HERO
+=================================================== -->
+<section id="home" style="padding:0;">
+  <div class="hero-decor">
+    <div class="hero-circle c1"></div>
+    <div class="hero-circle c2"></div>
+    <div class="hero-dots"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">✦ Ekangarsarai's Beauty Destination</div>
+      <div class="hero-ws-badge">🏪 Retail &amp; Wholesale Available</div>
+      <h1 class="hero-title">
+        Chandni<em>Bangle <span class="gold-word">Store</span></em>
+      </h1>
+      <p class="hero-tagline">Beauty and Fashion in Ekangarsarai — your one-stop destination for bangles, perfumes, cosmetics, grooming &amp; pooja essentials.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn btn-rose">View Products 💎</a>
+        <a href="#order" class="btn btn-gold">Order Now ✨</a>
+        <a href="#wholesale" class="btn btn-outline" style="border-color:var(--gold);color:var(--gold);">Wholesale 🏭</a>
+      </div>
+      <div class="hero-rating">
+        <div>
+          <div class="score">4.6</div>
+          <div class="stars">★★★★★</div>
+          <div class="count">280+ Happy Customers</div>
+        </div>
+        <div style="width:1px;height:50px;background:var(--border);"></div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--rose-deep);font-weight:600;">500+</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">Products in Store</div>
+        </div>
+        <div style="width:1px;height:50px;background:var(--border);"></div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--gold);font-weight:600;">5+</div>
+          <div style="font-size:0.72rem;color:var(--text-light);">Years of Service</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-stack">
+        <div class="hero-img-main"></div>
+        <div class="hero-img-float f1"></div>
+        <div class="hero-img-float f2"></div>
+        <div class="hero-tag-pill p1">🌸 Premium Bangles</div>
+        <div class="hero-tag-pill p2">💄 Beauty Essentials</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <div class="container">
+    <div class="ib-item reveal"><div class="num">500+</div><p>Products</p></div>
+    <div class="ib-item reveal"><div class="num">₹50–2000</div><p>Price Range</p></div>
+    <div class="ib-item reveal"><div class="num">4.6★</div><p>Rating</p></div>
+    <div class="ib-item reveal"><div class="num">Daily</div><p>10 AM – 9:30 PM</p></div>
+  </div>
+</div>
+
+<!-- ===================================================
+     ABOUT
+=================================================== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal-l">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Where <em>Beauty</em> Meets<br>Tradition</h2>
+        <div class="gold-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+        <p>Chandni Bangle Store was founded with a heartfelt dream — to bring the finest bangles, beauty products, and daily essentials to the women and families of Ekangarsarai. What began as a small corner shop on Jehanabad Road has blossomed into the most trusted beauty and fashion destination in the region.</p>
+        <p>We believe every woman deserves to look and feel her best. From hand-crafted glass bangles to premium cosmetics, aromatic perfumes to daily pooja items — we curate products that celebrate femininity, tradition, and modern style in one beautiful space.</p>
+        <p>Our mission is simple: deliver quality products at affordable prices, backed by warm, personalised service that makes every visit memorable.</p>
+        <div class="about-pillars">
+          <div class="pillar"><div class="icon">💎</div><h4>Premium Quality</h4><p>Carefully sourced products from trusted brands.</p></div>
+          <div class="pillar"><div class="icon">💰</div><h4>Best Prices</h4><p>Competitive pricing for every budget.</p></div>
+          <div class="pillar"><div class="icon">🌸</div><h4>Wide Range</h4><p>Everything beauty, fashion and beyond.</p></div>
+          <div class="pillar"><div class="icon">💝</div><h4>Personal Service</h4><p>Helpful, friendly staff you can trust.</p></div>
+        </div>
+      </div>
+      <div class="about-visual reveal-r">
+        <div class="about-img-main"></div>
+        <div class="about-float-card">
+          <div class="num">5+</div>
+          <p>Years Serving<br>Ekangarsarai</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     FEATURED PRODUCTS
+=================================================== -->
+<section id="featured">
+  <div class="container">
+    <div class="featured-header reveal">
+      <span class="section-label">Handpicked Favourites</span>
+      <h2 class="section-title">Featured <em>Products</em></h2>
+      <div class="gold-divider center"><span class="line"></span><span class="diamond"></span><span class="diamond" style="margin:0 4px;"></span><span class="diamond"></span><span class="line"></span></div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=700&q=80');">
+          <span class="product-badge">Bestseller</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Bangles</div>
+          <div class="product-name">Bridal Glass Bangle Set</div>
+          <div class="product-price">₹299 <span class="old">₹450</span></div>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80');">
+          <span class="product-badge">New</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Cosmetics</div>
+          <div class="product-name">Matte Lipstick Set</div>
+          <div class="product-price">₹199</div>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1541643600914-78b084683702?w=400&q=80');">
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Perfumes</div>
+          <div class="product-name">Rose Attar Perfume</div>
+          <div class="product-price">₹350 <span class="old">₹500</span></div>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1556228724-0e1b2a4b5e00?w=400&q=80');">
+          <span class="product-badge">Popular</span>
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Grooming</div>
+          <div class="product-name">Skincare Glow Kit</div>
+          <div class="product-price">₹450</div>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=400&q=80');">
+        </div>
+        <div class="product-info">
+          <div class="product-cat">Pooja Products</div>
+          <div class="product-name">Pooja Thali Set</div>
+          <div class="product-price">₹180</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="#menu" class="btn btn-outline">Browse All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     MENU / PRODUCTS
+=================================================== -->
+<section id="menu">
+  <div class="container">
+    <div class="menu-header reveal">
+      <span class="section-label">Our Collection</span>
+      <h2 class="section-title">Shop by <em>Category</em></h2>
+      <div class="gold-divider center"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+    </div>
+    <div class="gender-tabs reveal">
+      <button class="gender-tab active" onclick="switchGender('women',this)">👩 Women</button>
+      <button class="gender-tab" onclick="switchGender('men',this)">👨 Men</button>
+    </div>
+    <!-- WOMEN CATEGORIES -->
+    <div id="cat-women">
+      <div class="cat-tabs reveal">
+        <button class="cat-tab active" onclick="switchCat('w-bangles',this,'w')">💍 Bangles</button>
+        <button class="cat-tab" onclick="switchCat('w-perfumes',this,'w')">🌺 Perfumes</button>
+        <button class="cat-tab" onclick="switchCat('w-grooming',this,'w')">✨ Grooming</button>
+        <button class="cat-tab" onclick="switchCat('w-makeup',this,'w')">💄 Makeup</button>
+        <button class="cat-tab" onclick="switchCat('w-pooja',this,'w')">🪔 Pooja</button>
+        <button class="cat-tab" onclick="switchCat('w-cosmetics',this,'w')">💅 Cosmetics</button>
+      </div>
+      <!-- BANGLES -->
+      <div id="w-bangles" class="menu-section active">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Bridal Glass Bangle Set</span><span class="menu-card-price">₹299</span></div>
+            <p class="menu-card-desc">12-piece hand-painted glass bangles. Perfect for weddings &amp; festivals.</p>
+            <span class="menu-card-tag">🌸 Bestseller</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Gold-Tone Bangle Set</span><span class="menu-card-price">₹450</span></div>
+            <p class="menu-card-desc">Elegant gold-plated bangles, set of 6. Ideal for parties and functions.</p>
+            <span class="menu-card-tag">💛 Premium</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Coloured Lac Bangles</span><span class="menu-card-price">₹120</span></div>
+            <p class="menu-card-desc">Traditional lac bangles in vibrant colours, set of 24.</p>
+            <span class="menu-card-tag">🎨 Traditional</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Silver Oxidised Kara</span><span class="menu-card-price">₹200</span></div>
+            <p class="menu-card-desc">Handcrafted oxidised silver kara with intricate floral patterns.</p>
+            <span class="menu-card-tag">🪙 Ethnic</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1616675984003-82f5b68ff615?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Beaded Charm Bangle</span><span class="menu-card-price">₹85</span></div>
+            <p class="menu-card-desc">Multi-colour beaded bangles, perfect for daily casual wear.</p>
+            <span class="menu-card-tag">🌈 Casual</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1602810319428-019690571b5b?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Kundan Stone Bangles</span><span class="menu-card-price">₹550</span></div>
+            <p class="menu-card-desc">Elegant kundan stone studded bangles for bridal occasions.</p>
+            <span class="menu-card-tag">💎 Luxury</span>
+          </div>
+        </div>
+      </div>
+      <!-- WOMEN PERFUMES -->
+      <div id="w-perfumes" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1541643600914-78b084683702?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Rose Attar Perfume</span><span class="menu-card-price">₹350</span></div>
+            <p class="menu-card-desc">Pure rose attar, long-lasting floral fragrance for everyday use.</p>
+            <span class="menu-card-tag">🌹 Bestseller</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Jasmine Body Mist</span><span class="menu-card-price">₹180</span></div>
+            <p class="menu-card-desc">Light &amp; fresh jasmine body mist, 200ml spray bottle.</p>
+            <span class="menu-card-tag">🌸 Fresh</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Luxury Eau de Parfum</span><span class="menu-card-price">₹799</span></div>
+            <p class="menu-card-desc">Premium floral-woody scent, 50ml. Lasts 10–12 hours.</p>
+            <span class="menu-card-tag">✨ Premium</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Sandalwood Perfume Oil</span><span class="menu-card-price">₹250</span></div>
+            <p class="menu-card-desc">Traditional sandalwood perfume oil for hair and skin.</p>
+            <span class="menu-card-tag">🌿 Natural</span>
+          </div>
+        </div>
+      </div>
+      <!-- WOMEN GROOMING -->
+      <div id="w-grooming" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1556228724-0e1b2a4b5e00?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Skin Glow Face Pack</span><span class="menu-card-price">₹120</span></div>
+            <p class="menu-card-desc">Natural ingredients face pack for radiant, glowing skin.</p>
+            <span class="menu-card-tag">✨ Glow</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Hair Growth Serum</span><span class="menu-card-price">₹299</span></div>
+            <p class="menu-card-desc">Enriched with biotin and keratin for stronger, longer hair.</p>
+            <span class="menu-card-tag">💇 Hair Care</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Moisturising Body Lotion</span><span class="menu-card-price">₹180</span></div>
+            <p class="menu-card-desc">24-hour moisture lock body lotion with shea butter, 300ml.</p>
+            <span class="menu-card-tag">💧 Hydration</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Rose Water Toner</span><span class="menu-card-price">₹95</span></div>
+            <p class="menu-card-desc">Pure rose water toner for skin hydration and pore tightening.</p>
+            <span class="menu-card-tag">🌹 Pure</span>
+          </div>
+        </div>
+      </div>
+      <!-- WOMEN MAKEUP -->
+      <div id="w-makeup" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Matte Lipstick Collection</span><span class="menu-card-price">₹199</span></div>
+            <p class="menu-card-desc">Set of 6 long-lasting matte lipsticks in trending shades.</p>
+            <span class="menu-card-tag">💋 Popular</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Kajal &amp; Kohl Stick</span><span class="menu-card-price">₹65</span></div>
+            <p class="menu-card-desc">Intense black kajal for dramatic eye definition, 24 hour stay.</p>
+            <span class="menu-card-tag">👁️ Eyes</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1617897903246-719242758050?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Eyeshadow Palette</span><span class="menu-card-price">₹350</span></div>
+            <p class="menu-card-desc">16-shade pigmented eyeshadow palette, matte &amp; shimmer finish.</p>
+            <span class="menu-card-tag">🎨 Eyes</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1583241475880-083f84372725?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">BB Cream Foundation</span><span class="menu-card-price">₹250</span></div>
+            <p class="menu-card-desc">Light-coverage BB cream with SPF 30 for natural flawless look.</p>
+            <span class="menu-card-tag">✨ Face</span>
+          </div>
+        </div>
+      </div>
+      <!-- WOMEN POOJA -->
+      <div id="w-pooja" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Brass Pooja Thali Set</span><span class="menu-card-price">₹380</span></div>
+            <p class="menu-card-desc">Complete brass thali set with diya, bell and incense holder.</p>
+            <span class="menu-card-tag">🪔 Pooja</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Agarbatti Incense Set</span><span class="menu-card-price">₹50</span></div>
+            <p class="menu-card-desc">Premium incense sticks in 5 fragrances — sandalwood, rose, jasmine.</p>
+            <span class="menu-card-tag">🌿 Fragrant</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1567443045460-ac8a6f797a6c?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Kumkum &amp; Sindoor Set</span><span class="menu-card-price">₹75</span></div>
+            <p class="menu-card-desc">Pure natural kumkum and sindoor in decorative box packaging.</p>
+            <span class="menu-card-tag">❤️ Traditional</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Camphor Tablets Pack</span><span class="menu-card-price">₹40</span></div>
+            <p class="menu-card-desc">Pure camphor tablets for daily pooja rituals, 100g pack.</p>
+            <span class="menu-card-tag">🕯️ Pooja</span>
+          </div>
+        </div>
+      </div>
+      <!-- WOMEN COSMETICS -->
+      <div id="w-cosmetics" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1625708458528-802ec79b1ed8?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Nail Polish Set (12 pcs)</span><span class="menu-card-price">₹220</span></div>
+            <p class="menu-card-desc">Long-lasting nail enamels in 12 vibrant shades.</p>
+            <span class="menu-card-tag">💅 Nails</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Mehndi Cone Pack</span><span class="menu-card-price">₹60</span></div>
+            <p class="menu-card-desc">Ready-to-use natural henna mehndi cones, pack of 6.</p>
+            <span class="menu-card-tag">🌿 Natural</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Hair Accessories Kit</span><span class="menu-card-price">₹150</span></div>
+            <p class="menu-card-desc">Complete hair accessories kit — clips, pins, rubber bands &amp; scrunchies.</p>
+            <span class="menu-card-tag">💁 Hair</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Fairness Cream</span><span class="menu-card-price">₹130</span></div>
+            <p class="menu-card-desc">Daily skin brightening cream with SPF protection, 50g.</p>
+            <span class="menu-card-tag">✨ Skincare</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEN CATEGORIES -->
+    <div id="cat-men" style="display:none;">
+      <div class="cat-tabs reveal">
+        <button class="cat-tab active" onclick="switchCat('m-perfumes',this,'m')">🌿 Perfumes</button>
+        <button class="cat-tab" onclick="switchCat('m-grooming',this,'m')">✂️ Grooming</button>
+        <button class="cat-tab" onclick="switchCat('m-makeup',this,'m')">💆 Makeup</button>
+        <button class="cat-tab" onclick="switchCat('m-pooja',this,'m')">🪔 Pooja</button>
+        <button class="cat-tab" onclick="switchCat('m-cosmetics',this,'m')">🧴 Cosmetics</button>
+      </div>
+      <!-- MEN PERFUMES -->
+      <div id="m-perfumes" class="menu-section active">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Oud Wood Cologne</span><span class="menu-card-price">₹650</span></div>
+            <p class="menu-card-desc">Intense woody oud cologne, long-lasting 50ml spray.</p>
+            <span class="menu-card-tag">🌲 Woody</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Cool Aqua Body Spray</span><span class="menu-card-price">₹199</span></div>
+            <p class="menu-card-desc">Fresh aqua body spray for everyday use, 150ml.</p>
+            <span class="menu-card-tag">💧 Fresh</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1541643600914-78b084683702?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Musk Attar Oil</span><span class="menu-card-price">₹280</span></div>
+            <p class="menu-card-desc">Rich musk attar perfume oil, 10ml, all-day fragrance.</p>
+            <span class="menu-card-tag">🌿 Attar</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Sport Deodorant Spray</span><span class="menu-card-price">₹150</span></div>
+            <p class="menu-card-desc">48-hour protection sport deodorant with fresh scent.</p>
+            <span class="menu-card-tag">💪 Sport</span>
+          </div>
+        </div>
+      </div>
+      <!-- MEN GROOMING -->
+      <div id="m-grooming" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1621607509492-5e8e9b71e42b?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Beard Growth Oil</span><span class="menu-card-price">₹250</span></div>
+            <p class="menu-card-desc">Castor &amp; argan beard oil for healthy beard growth, 50ml.</p>
+            <span class="menu-card-tag">🧔 Beard</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Anti-Dandruff Shampoo</span><span class="menu-card-price">₹180</span></div>
+            <p class="menu-card-desc">Medicated anti-dandruff shampoo with tea tree oil, 200ml.</p>
+            <span class="menu-card-tag">💇 Hair</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Charcoal Face Wash</span><span class="menu-card-price">₹140</span></div>
+            <p class="menu-card-desc">Deep cleansing activated charcoal face wash, 100ml.</p>
+            <span class="menu-card-tag">🖤 Skin</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Shaving Cream &amp; Kit</span><span class="menu-card-price">₹220</span></div>
+            <p class="menu-card-desc">Complete shaving kit with premium foam, razor and aftershave.</p>
+            <span class="menu-card-tag">🪒 Shaving</span>
+          </div>
+        </div>
+      </div>
+      <!-- MEN MAKEUP -->
+      <div id="m-makeup" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Men's Kajal Pencil</span><span class="menu-card-price">₹60</span></div>
+            <p class="menu-card-desc">Intense black kajal pencil for well-defined eyes.</p>
+            <span class="menu-card-tag">👁️ Eyes</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Tinted Moisturiser SPF30</span><span class="menu-card-price">₹200</span></div>
+            <p class="menu-card-desc">Lightweight tinted moisturiser for even skin tone and sun protection.</p>
+            <span class="menu-card-tag">☀️ Sun Care</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1583241475880-083f84372725?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Lip Balm SPF</span><span class="menu-card-price">₹80</span></div>
+            <p class="menu-card-desc">Tinted lip balm with sun protection for moisturised lips.</p>
+            <span class="menu-card-tag">💋 Lips</span>
+          </div>
+        </div>
+      </div>
+      <!-- MEN POOJA -->
+      <div id="m-pooja" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Dhoop Sticks Pack</span><span class="menu-card-price">₹55</span></div>
+            <p class="menu-card-desc">Thick dhoop sticks in sandalwood and havan fragrance.</p>
+            <span class="menu-card-tag">🪔 Pooja</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Puja Brass Diya (Set of 5)</span><span class="menu-card-price">₹190</span></div>
+            <p class="menu-card-desc">Traditional brass diyas for daily rituals and festivals.</p>
+            <span class="menu-card-tag">🕯️ Ritual</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Chandan Paste Tube</span><span class="menu-card-price">₹80</span></div>
+            <p class="menu-card-desc">Pure sandalwood chandan paste for daily tilak and rituals.</p>
+            <span class="menu-card-tag">🌿 Pure</span>
+          </div>
+        </div>
+      </div>
+      <!-- MEN COSMETICS -->
+      <div id="m-cosmetics" class="menu-section">
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Men's Fairness Cream</span><span class="menu-card-price">₹145</span></div>
+            <p class="menu-card-desc">Daily skin brightening &amp; oil-control cream for men, 50g.</p>
+            <span class="menu-card-tag">✨ Skincare</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Hair Wax / Gel</span><span class="menu-card-price">₹120</span></div>
+            <p class="menu-card-desc">Strong-hold hair styling wax for all-day styled look.</p>
+            <span class="menu-card-tag">💈 Styling</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Sunscreen SPF 50+</span><span class="menu-card-price">₹180</span></div>
+            <p class="menu-card-desc">Broad-spectrum SPF 50+ sunscreen lotion, non-greasy, 75ml.</p>
+            <span class="menu-card-tag">☀️ Sun Care</span>
+          </div>
+        </div>
+        <div class="menu-card">
+          <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=400&q=80');"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-top"><span class="menu-card-name">Talcum Powder</span><span class="menu-card-price">₹80</span></div>
+            <p class="menu-card-desc">Refreshing talcum powder with cool mint fragrance, 200g.</p>
+            <span class="menu-card-tag">❄️ Fresh</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     WHOLESALE
+=================================================== -->
+<section id="wholesale">
+  <div class="container">
+    <div class="ws-header reveal">
+      <span class="section-label">For Every Buyer</span>
+      <h2 class="section-title">Retail &amp; <em>Wholesale</em> Services</h2>
+      <div class="gold-divider center"><span class="line"></span><span class="diamond"></span><span class="diamond" style="margin:0 4px;"></span><span class="diamond"></span><span class="line"></span></div>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.88rem;max-width:600px;margin:0 auto;margin-top:1rem;line-height:1.8;">Whether you're shopping for yourself or stocking up your shop, Chandni Bangle Store serves both individual retail customers and wholesale trade buyers with the best prices in Bihar.</p>
+    </div>
+
+    <!-- Retail vs Wholesale comparison -->
+    <div class="ws-compare reveal">
+      <!-- RETAIL -->
+      <div class="ws-col retail">
+        <div class="ws-col-header">
+          <div class="ws-col-icon">🛍️</div>
+          <div>
+            <div class="ws-col-title">Retail</div>
+            <div class="ws-col-sub">Individual customers</div>
+          </div>
+        </div>
+        <div class="ws-features">
+          <div class="ws-feat">
+            <span class="tick">🌸</span>
+            <div class="ws-feat-text"><strong>Walk-in &amp; Buy Anytime</strong><p>Visit our store any day, 10 AM – 9:30 PM. No prior booking needed.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">🎁</span>
+            <div class="ws-feat-text"><strong>Single Unit Purchase</strong><p>Buy as little as 1 item — perfect for personal use or gifting.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">🚚</span>
+            <div class="ws-feat-text"><strong>Home Delivery</strong><p>We deliver to your door within Ekangarsarai &amp; nearby areas.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">💳</span>
+            <div class="ws-feat-text"><strong>Flexible Payment</strong><p>Cash, UPI, and online payment accepted at checkout.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">🔄</span>
+            <div class="ws-feat-text"><strong>Easy Exchange</strong><p>Hassle-free product exchange within 7 days of purchase.</p></div>
+          </div>
+        </div>
+        <table class="ws-price-table">
+          <thead><tr><th>Product</th><th>Retail Price</th></tr></thead>
+          <tbody>
+            <tr><td>Bangle Set (12 pcs)</td><td>₹120–₹599</td></tr>
+            <tr><td>Lipstick / Cosmetics</td><td>₹60–₹350</td></tr>
+            <tr><td>Perfumes / Attar</td><td>₹150–₹800</td></tr>
+            <tr><td>Grooming Products</td><td>₹80–₹450</td></tr>
+            <tr><td>Pooja Items</td><td>₹40–₹400</td></tr>
+          </tbody>
+        </table>
+        <button class="ws-cta btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'});switchOrderType('retail')">🛍️ Place Retail Order</button>
+      </div>
+
+      <!-- WHOLESALE -->
+      <div class="ws-col wholesale">
+        <div class="ws-col-header">
+          <div class="ws-col-icon">🏭</div>
+          <div>
+            <div class="ws-col-title">Wholesale</div>
+            <div class="ws-col-sub">Trade &amp; Bulk Buyers</div>
+          </div>
+        </div>
+        <div class="ws-features">
+          <div class="ws-feat">
+            <span class="tick">💰</span>
+            <div class="ws-feat-text"><strong>Up to 40% Trade Discount</strong><p>Significantly lower per-unit pricing for bulk and trade orders.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">📦</span>
+            <div class="ws-feat-text"><strong>Minimum Order Quantity</strong><p>MOQ starts from 1 dozen (12 units) per SKU depending on category.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">🗓️</span>
+            <div class="ws-feat-text"><strong>Advance Booking</strong><p>Book your stock in advance for festivals and seasonal demand peaks.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">🤝</span>
+            <div class="ws-feat-text"><strong>Dedicated Account Manager</strong><p>Personal point of contact for all your bulk order requirements.</p></div>
+          </div>
+          <div class="ws-feat">
+            <span class="tick">🚛</span>
+            <div class="ws-feat-text"><strong>Bulk Delivery &amp; Pickup</strong><p>Arrange bulk pickup from store or bulk delivery for large orders.</p></div>
+          </div>
+        </div>
+        <table class="ws-price-table">
+          <thead><tr><th>Product (per dozen)</th><th>Wholesale Price</th></tr></thead>
+          <tbody>
+            <tr><td>Bangle Sets (12 sets)</td><td>₹800–₹4,500</td></tr>
+            <tr><td>Cosmetics (12 units)</td><td>₹480–₹2,800</td></tr>
+            <tr><td>Perfumes (12 units)</td><td>₹1,200–₹6,500</td></tr>
+            <tr><td>Grooming (12 units)</td><td>₹650–₹3,500</td></tr>
+            <tr><td>Pooja Items (12 units)</td><td>₹300–₹3,000</td></tr>
+          </tbody>
+        </table>
+        <button class="ws-cta btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'});switchOrderType('wholesale')">🏭 Send Wholesale Enquiry</button>
+      </div>
+    </div>
+
+    <!-- Benefits strip -->
+    <div class="ws-benefits">
+      <div class="ws-benefit reveal">
+        <div class="b-icon">📦</div>
+        <h4>Bulk Stock Available</h4>
+        <p>500+ products always in stock. Never face shortage during festivals.</p>
+      </div>
+      <div class="ws-benefit reveal">
+        <div class="b-icon">💰</div>
+        <h4>Best Trade Prices</h4>
+        <p>Competitive wholesale pricing that lets you maintain healthy margins.</p>
+      </div>
+      <div class="ws-benefit reveal">
+        <div class="b-icon">🤝</div>
+        <h4>Trusted by 50+ Retailers</h4>
+        <p>Shops across Ekangarsarai &amp; Jehanabad trust us for their stock.</p>
+      </div>
+      <div class="ws-benefit reveal">
+        <div class="b-icon">🚛</div>
+        <h4>Fast Dispatch</h4>
+        <p>Bulk orders dispatched within 24–48 hours of confirmation.</p>
+      </div>
+    </div>
+
+    <!-- Enquiry CTA band -->
+    <div class="ws-enquiry-band reveal">
+      <div class="ws-enquiry-text">
+        <h3>Ready to stock your <em>shop?</em></h3>
+        <p>Call us directly or fill the wholesale enquiry form below. We'll get back to you within a few hours.</p>
+      </div>
+      <div class="ws-enquiry-actions">
+        <a href="tel:+918578950356" class="btn btn-gold">📞 Call for Wholesale</a>
+        <a href="#order" class="btn btn-outline" style="border-color:rgba(201,149,46,0.5);color:var(--gold-light);" onclick="switchOrderType('wholesale')">📋 Enquiry Form</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     ORDER PAGE
+=================================================== -->
+<section id="order">
+  <div class="container">
+    <div class="order-grid">
+      <div class="order-info reveal-l">
+        <span class="section-label">Place Your Order</span>
+        <h2 class="section-title">Retail &amp; <em>Wholesale</em><br>Orders Welcome</h2>
+        <div class="gold-divider"><span class="line"></span><span class="diamond"></span></div>
+        <p>Whether you're a retail customer ordering a few items for yourself, or a trade buyer placing a bulk wholesale enquiry — fill in the form and we'll get back to you promptly!</p>
+        <div class="order-detail">
+          <div class="od-icon">📞</div>
+          <div class="od-text"><strong>Call to Order / Enquire</strong><p>+91 85789 50356</p></div>
+        </div>
+        <div class="order-detail">
+          <div class="od-icon">📍</div>
+          <div class="od-text"><strong>Store Address</strong><p>Jehanabad Road, Ekangar Sarai Chowk, Ekangarsarai, Bihar 801301</p></div>
+        </div>
+        <div class="order-detail">
+          <div class="od-icon">⏰</div>
+          <div class="od-text"><strong>Store Hours</strong><p>10:00 AM – 9:30 PM Daily</p></div>
+        </div>
+        <div class="order-detail">
+          <div class="od-icon">🚚</div>
+          <div class="od-text"><strong>Delivery Options</strong><p>Home delivery (retail) &amp; bulk dispatch (wholesale) available</p></div>
+        </div>
+        <div class="order-detail">
+          <div class="od-icon">🏭</div>
+          <div class="od-text"><strong>Wholesale MOQ</strong><p>Minimum 1 dozen per product. Up to 40% trade discount.</p></div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="order-form-box">
+          <div class="order-cart">
+            <h4>🛒 Sample Cart</h4>
+            <div class="cart-item"><span>Bridal Bangle Set</span><span style="color:var(--rose-deep)">₹299</span></div>
+            <div class="cart-item"><span>Matte Lipstick Set</span><span style="color:var(--rose-deep)">₹199</span></div>
+            <div class="cart-item"><span>Rose Attar Perfume</span><span style="color:var(--rose-deep)">₹350</span></div>
+            <div class="cart-total"><span>Total</span><span>₹848</span></div>
+          </div>
+          <form id="orderForm" onsubmit="submitOrder(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group" id="fg-name">
+                <label for="o-name">Full Name</label>
+                <input type="text" id="o-name" placeholder="Your Full Name" />
+                <span class="err">Please enter your name.</span>
+              </div>
+              <div class="form-group" id="fg-phone">
+                <label for="o-phone">Phone Number</label>
+                <input type="tel" id="o-phone" placeholder="+91 00000 00000" />
+                <span class="err">Enter valid 10-digit number.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" id="fg-qty">
+                <label for="o-qty">No. of Items</label>
+                <select id="o-qty">
+                  <option value="">Select quantity</option>
+                  <option>1 Item</option>
+                  <option>2–5 Items</option>
+                  <option>5–10 Items</option>
+                  <option>10+ Items</option>
+                  <option>Bulk Order</option>
+                </select>
+                <span class="err">Please select quantity.</span>
+              </div>
+              <div class="form-group" id="fg-date">
+                <label for="o-date">Preferred Date</label>
+                <input type="date" id="o-date" />
+                <span class="err">Please select a date.</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" id="fg-time">
+                <label for="o-time">Preferred Time</label>
+                <select id="o-time">
+                  <option value="">Select time</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>12:00 PM</option>
+                  <option>1:00 PM</option>
+                  <option>2:00 PM</option>
+                  <option>3:00 PM</option>
+                  <option>4:00 PM</option>
+                  <option>5:00 PM</option>
+                  <option>6:00 PM</option>
+                  <option>7:00 PM</option>
+                  <option>8:00 PM</option>
+                  <option>9:00 PM</option>
+                </select>
+                <span class="err">Please select a time.</span>
+              </div>
+              <div class="form-group">
+                <label for="o-type">Order Type</label>
+                <select id="o-type">
+                  <option>Home Delivery</option>
+                  <option>Store Pickup</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="o-msg">Products / Special Request</label>
+              <textarea id="o-msg" placeholder="Tell us which products you need, sizes, colours etc..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-rose submit-btn">🌸 Place Order</button>
+          </form>
+          <div class="success-wrap" id="orderSuccess">
+            <div class="success-icon">🌸</div>
+            <h3>Order Placed!</h3>
+            <p>Thank you! We've received your order and will contact you shortly at the number provided.<br><br>Visit us at Chandni Bangle Store, Ekangarsarai!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     GALLERY
+=================================================== -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <span class="section-label">Our World</span>
+      <h2 class="section-title">A Peek Inside <em>Chandni</em></h2>
+      <div class="gold-divider center"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g-item" onclick="openLb(0)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+      <div class="g-item" onclick="openLb(1)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+      <div class="g-item" onclick="openLb(2)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1541643600914-78b084683702?w=500&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+      <div class="g-item" onclick="openLb(3)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=500&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+      <div class="g-item" onclick="openLb(4)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1556228724-0e1b2a4b5e00?w=800&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+      <div class="g-item" onclick="openLb(5)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=500&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+      <div class="g-item" onclick="openLb(6)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1526045431048-f857369baa09?w=500&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+      <div class="g-item" onclick="openLb(7)">
+        <div class="g-bg" style="background-image:url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=80');"></div>
+        <div class="g-overlay">🔍</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lb-close" onclick="closeLb()">×</span>
+  <span class="lb-btn lb-prev" onclick="navLb(-1)">‹</span>
+  <img id="lbImg" src="" alt="" />
+  <span class="lb-btn lb-next" onclick="navLb(1)">›</span>
+</div>
+
+<!-- ===================================================
+     REVIEWS
+=================================================== -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <span class="section-label">Customer Love</span>
+      <h2 class="section-title">What Our <em>Customers Say</em></h2>
+      <div class="gold-divider center"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+    </div>
+    <div class="reviews-top reveal">
+      <div class="rating-hero">
+        <div class="big">4.6</div>
+        <div class="stars">★★★★★</div>
+        <div class="lbl">280+ Reviews</div>
+      </div>
+      <div class="rating-bars">
+        <div class="rb-row"><span class="n">5</span><div class="bar"><div class="fill" style="width:72%"></div></div></div>
+        <div class="rb-row"><span class="n">4</span><div class="bar"><div class="fill" style="width:18%"></div></div></div>
+        <div class="rb-row"><span class="n">3</span><div class="bar"><div class="fill" style="width:6%"></div></div></div>
+        <div class="rb-row"><span class="n">2</span><div class="bar"><div class="fill" style="width:2%"></div></div></div>
+        <div class="rb-row"><span class="n">1</span><div class="bar"><div class="fill" style="width:2%"></div></div></div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Best bangle shop in the whole area! I bought my bridal set from here and they were absolutely stunning. The variety is just incredible."</div>
+        <div class="reviewer">
+          <div class="reviewer-ava">P</div>
+          <div><div class="reviewer-name">Priya Kumari</div><div class="reviewer-date">2 months ago</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Chandni Store has everything — from daily skincare to premium perfumes. The staff is so helpful and prices are very reasonable. My go-to shop!"</div>
+        <div class="reviewer">
+          <div class="reviewer-ava">S</div>
+          <div><div class="reviewer-name">Sunita Devi</div><div class="reviewer-date">1 month ago</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★☆</div>
+        <div class="review-text">"Amazing collection of cosmetics. I found all my favourite brands here at better prices than online. Will definitely keep coming back!"</div>
+        <div class="reviewer">
+          <div class="reviewer-ava">A</div>
+          <div><div class="reviewer-name">Anjali Singh</div><div class="reviewer-date">3 weeks ago</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"The Oud perfume I bought for my husband was a big hit! The quality is excellent and the fragrance lasts all day. Highly recommended!"</div>
+        <div class="reviewer">
+          <div class="reviewer-ava">R</div>
+          <div><div class="reviewer-name">Rekha Sharma</div><div class="reviewer-date">5 weeks ago</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Love this store! The pooja items selection is vast and very authentic. The brass thali I purchased is beautiful and of great quality."</div>
+        <div class="reviewer">
+          <div class="reviewer-ava">M</div>
+          <div><div class="reviewer-name">Mamta Pandey</div><div class="reviewer-date">2 months ago</div></div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★☆</div>
+        <div class="review-text">"Very good grooming products selection for men. Found my beard oil and shampoo here. Shop is neat, well-organised and the service is friendly."</div>
+        <div class="reviewer">
+          <div class="reviewer-ava">V</div>
+          <div><div class="reviewer-name">Vikash Kumar</div><div class="reviewer-date">6 weeks ago</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     CONTACT
+=================================================== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal-l">
+        <span class="section-label">Visit Us</span>
+        <h2 class="section-title">Find <em>Chandni</em><br>Bangle Store</h2>
+        <div class="gold-divider"><span class="line"></span><span class="diamond"></span></div>
+        <div class="contact-block">
+          <div class="c-icon">📍</div>
+          <div class="c-text">
+            <h4>Address</h4>
+            <p>Jehanabad Road, Ekangar Sarai Chowk Road<br>Ekangarsarai, Bihar 801301</p>
+          </div>
+        </div>
+        <div class="contact-block">
+          <div class="c-icon">📞</div>
+          <div class="c-text">
+            <h4>Phone</h4>
+            <p><a href="tel:+918578950356" style="color:var(--rose);">+91 85789 50356</a></p>
+          </div>
+        </div>
+        <div class="contact-block">
+          <div class="c-icon">⏰</div>
+          <div class="c-text">
+            <h4>Opening Hours</h4>
+            <table class="hours-tbl">
+              <tr><td>Monday – Saturday</td><td>10:00 AM – 9:30 PM</td></tr>
+              <tr><td>Sunday</td><td>10:00 AM – 9:30 PM</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="contact-block">
+          <div class="c-icon">🚚</div>
+          <div class="c-text">
+            <h4>Home Delivery</h4>
+            <p>Available in Ekangarsarai &amp; surrounding areas.<br>Call us to enquire.</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="map-box">
+          <div class="map-placeholder">
+            <div class="map-icon">🗺️</div>
+            <h3>Chandni Bangle Store</h3>
+            <p>Jehanabad Road, Ekangar Sarai Chowk Road, Ekangarsarai, Bihar 801301</p>
+            <a href="https://maps.google.com/?q=Ekangarsarai+Bihar+801301" target="_blank">Open in Google Maps →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================
+     FOOTER
+=================================================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Chandni <span>Bangle Store</span></div>
+        <p>Your neighbourhood beauty and fashion destination in Ekangarsarai, Bihar. Quality products, warm service, and beautiful choices — every day.</p>
+        <div class="socials">
+          <a class="social-btn" href="#" title="Facebook">f</a>
+          <a class="social-btn" href="#" title="Instagram">📸</a>
+          <a class="social-btn" href="https://wa.me/918578950356" title="WhatsApp">💬</a>
+          <a class="social-btn" href="tel:+918578950356" title="Call">📞</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#menu">Products</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Women's Products</h5>
+        <ul>
+          <li><a href="#menu" onclick="switchGender('women',null);switchCat('w-bangles',null,'w')">Bangles</a></li>
+          <li><a href="#menu" onclick="switchGender('women',null);switchCat('w-perfumes',null,'w')">Perfumes</a></li>
+          <li><a href="#menu" onclick="switchGender('women',null);switchCat('w-makeup',null,'w')">Makeup</a></li>
+          <li><a href="#menu" onclick="switchGender('women',null);switchCat('w-pooja',null,'w')">Pooja Products</a></li>
+          <li><a href="#menu" onclick="switchGender('women',null);switchCat('w-cosmetics',null,'w')">Cosmetics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Men's Products</h5>
+        <ul>
+          <li><a href="#menu" onclick="switchGender('men',null);switchCat('m-perfumes',null,'m')">Perfumes</a></li>
+          <li><a href="#menu" onclick="switchGender('men',null);switchCat('m-grooming',null,'m')">Grooming</a></li>
+          <li><a href="#menu" onclick="switchGender('men',null);switchCat('m-cosmetics',null,'m')">Cosmetics</a></li>
+          <li><a href="#menu" onclick="switchGender('men',null);switchCat('m-pooja',null,'m')">Pooja Products</a></li>
+          <li><a href="#order">Order Online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Chandni Bangle Store, Ekangarsarai. All rights reserved.</p>
+      <p>Made with <span class="heart">🌸</span> in Bihar</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<!-- ===================================================
+     JAVASCRIPT
+=================================================== -->
+<script>
+  // ── NAVBAR ─────────────────────────────────────────────
+  const navbar = document.getElementById('navbar');
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+  });
+
+  // ── HAMBURGER ──────────────────────────────────────────
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMob() {
+    ham.classList.remove('open');
+    mob.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── GENDER TABS ────────────────────────────────────────
+  function switchGender(gender, btn) {
+    // Show/hide sections
+    document.getElementById('cat-women').style.display = gender === 'women' ? '' : 'none';
+    document.getElementById('cat-men').style.display = gender === 'men' ? '' : 'none';
+    // Update button states
+    if (btn) {
+      document.querySelectorAll('.gender-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    // Activate first cat-tab in visible section
+    const visibleCats = document.getElementById('cat-' + gender).querySelectorAll('.cat-tab');
+    if (visibleCats.length) {
+      visibleCats.forEach(b => b.classList.remove('active'));
+      visibleCats[0].classList.add('active');
+    }
+    // Show first menu section
+    const prefix = gender === 'women' ? 'w-' : 'm-';
+    const firstIds = { women: 'w-bangles', men: 'm-perfumes' };
+    document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(firstIds[gender]);
+    if (target) target.classList.add('active');
+  }
+
+  // ── CATEGORY TABS ──────────────────────────────────────
+  function switchCat(id, btn, prefix) {
+    // Deactivate all sections
+    document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) target.classList.add('active');
+    // Update cat tab buttons only within same gender section
+    if (btn) {
+      const parent = btn.closest('.cat-tabs');
+      if (parent) parent.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  }
+
+  // ── ORDER FORM VALIDATION ──────────────────────────────
+  function setValid(id, ok) {
+    const fg = document.getElementById('fg-' + id);
+    if (!fg) return true;
+    fg.classList.toggle('invalid', !ok);
+    return ok;
+  }
+  function submitOrder(e) {
+    e.preventDefault();
+    const name = document.getElementById('o-name').value.trim();
+    const phone = document.getElementById('o-phone').value.trim();
+    const qty = document.getElementById('o-qty').value;
+    const date = document.getElementById('o-date').value;
+    const time = document.getElementById('o-time').value;
+    const phoneOk = /^[+]?[\d\s\-]{10,14}$/.test(phone);
+    const v1 = setValid('name', name.length >= 2);
+    const v2 = setValid('phone', phoneOk);
+    const v3 = setValid('qty', qty !== '');
+    const v4 = setValid('date', date !== '');
+    const v5 = setValid('time', time !== '');
+    if (v1 && v2 && v3 && v4 && v5) {
+      document.getElementById('orderForm').style.display = 'none';
+      document.getElementById('orderSuccess').style.display = 'block';
+    }
+  }
+
+  // Set min date
+  const od = document.getElementById('o-date');
+  if (od) { od.min = new Date().toISOString().split('T')[0]; od.value = od.min; }
+
+  // ── LIGHTBOX ───────────────────────────────────────────
+  const lbImgs = [
+    'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=1200&q=90',
+    'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=90',
+    'https://images.unsplash.com/photo-1541643600914-78b084683702?w=1200&q=90',
+    'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=1200&q=90',
+    'https://images.unsplash.com/photo-1556228724-0e1b2a4b5e00?w=1200&q=90',
+    'https://images.unsplash.com/photo-1512207736890-6ffed8a84e8d?w=1200&q=90',
+    'https://images.unsplash.com/photo-1526045431048-f857369baa09?w=1200&q=90',
+    'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&q=90',
+  ];
+  let curLb = 0;
+  function openLb(i) {
+    curLb = i;
+    document.getElementById('lbImg').src = lbImgs[i];
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function navLb(d) {
+    curLb = (curLb + d + lbImgs.length) % lbImgs.length;
+    document.getElementById('lbImg').src = lbImgs[curLb];
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e) { if(e.target===this) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key==='Escape') closeLb();
+    if (e.key==='ArrowLeft') navLb(-1);
+    if (e.key==='ArrowRight') navLb(1);
+  });
+
+  // ── SCROLL REVEAL ──────────────────────────────────────
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('in'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => ro.observe(el));
+
+  // Stagger delays for grids
+  document.querySelectorAll('.products-grid .product-card, .reviews-grid .review-card, .menu-card, .about-pillars .pillar').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.06) + 's';
+  });
+</script>
+</body>
+</html>
